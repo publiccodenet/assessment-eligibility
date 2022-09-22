@@ -1,13 +1,259 @@
+# Default locale for UI strings
 locale: "en"
 
-header:
- title: "Is your codebase eligible for a Standard for Public Code assessment?"
+# Customize UI strings
+ui-strings:
+  # display-help:         "Display help"
+  # copy-to-clipboard:    "Copy in the clipboard"
+  # mail-to-message:      "Send by email"
+  # mail-subject:         "Results"
+  # mail-body:            "Hi,\n%s\nThanks."
+  # redo:                 "Redo"
+  # ok:                   "Okay"
+  # contact-intro:        "Contact: "
+  # toggle-summary-style: "Toggle summary style"
+  # attention:            "Attention"
 
+# Website header
+header:
+ title:    "Standard for a Public Code self-assessment"
+ logo:     ""
+ color:    "is-primary"
+ subtitle: "Check if your codebase is ready for a full assessment?"
+
+# Website footer
+footer:
+ text:    "Made with [Choices](https://git.sr.ht/~bzg/choices) by Etalab/DINUM"
+ contact:  ""
+
+# Allow users to send you emails with the summary?
+mail-to: "info@publiccode.net"
+
+# Display help along with questions by default?
+display-help: true
+
+# Display summary when done?
+display-summary: true
+
+# Display score information?
+display-score: true
+
+# Display each score?
+display-score-details: true
+
+# Only the score with the highest value?
+display-score-top-result: true
+
+# In a branch of the tree, should the target node be set depending on
+# the updated value of conditional-score-outputs?
 conditional-navigation: false
 
+# Some text message to always display after the score results
+display-unconditionnally: ""
+
+# Set initial variables to register scores.  Each entry of
+# score-variables start with the name of the variable (you can pick
+# up any yaml-acceptable name), then:
+#
+# (1) "display": what to display when detailed scores are displayed
+# (2) "value": the initial value of the variable
+# (3) "as-top-result-display": what to display when the variable is
+#      the one with the highest score when the user is done.
+score-variables:
+  score-1:
+    display: "Alignment with the Standard for Public Code"
+    value: 0
+    as-percent: true
+    as-top-result-display: ""
+
+# Set conditional output depending on scores.
+# Each entry is composed of the name of the condition (you can pick up
+# any yaml-acceptable name), then:
+#
+# (1) notification (optional): bulma-based class names for the UI notification
+# (2) message (mandatory): message to display when one of the condition is met
+# (3) anything else is a "condition", which lists variables and their minimal
+# values for the condition to be met.
+conditional-score-outputs:
+  cas-1: # free-form
+    notification: "is-success"
+    priority: 1
+    # Final score message supports using formatting strings for
+    # scores.  Strings starting with "%" and matching a score name
+    # will be interpolated: e.g. here the message will display the
+    # value of "score-1".
+    message: "1 wins! :)  Here is the score 1: %score-1"
+    condition-1: #free-form
+      # cas-1 is the case when score-& >= 1
+      score-1: 1
+  cas-2: # free-form
+    notification: "is-danger"
+    message: "2 wins! :(  Here is the score 2: %score-2"
+    # When max is set as below, %score-2 above will be formatted as a
+    # percentage: if score 2 is 10 and max is 10, the percent is 100.
+    condition-1: #free-form
+      # cas-2 is the case when score-2 >= 9
+      score-2: 9
+
+# Mandatory configuration option
 tree:
   - node:       "0"
-    text:       "node 0"
+    text:       "Standard for Public Code"
     home-page:  true
+    force-help: true
     no-summary: true
+    help:       "The Standard for Public Code is a set of criteria that supports public organizations in developing and maintaining software and policy together.
+
+Anyone developing software or policy for a public purpose can use this standard to work towards higher quality public services that are more cost effective, with less risk and more control.
+
+This self-assessment will let you know how ready your codebase are for a full assessment."
+    choices:
+    - answer: "Start now"
+      goto:   "1"
+      color:  "is-info"
+
+  - node:       "1"
+    progress:   "[1 10]"  # progress bar
+    text:       "Is the codebase developed in the open?"
+    help:       "Does the public have insight to the development."
+    start-page: true
+    choices:
+    - answer:  "Yes"
+      summary: "Yes, the codebase is developed in the open."
+      explain: "Anyone can access the source code and see the backlog, roadmap, etc."
+      score:
+        score-1:
+          value: 1
+      goto:    "2"
+      color:   "is-info"
+    - answer:  "No"
+      summary: "No, the codebase is not open."
+      color:   "is-warning"
+      explain: "Some parts of the process is kept private."
+      goto:    "3"
+
+  - node:     "2"
+    progress: "[2 10]"  # progress bar
+    text:     "Does this codebase implement a public policy?"
+    help:     "With policy, we mean laws, regulations, decisions made by a public body or similar."
+    choices:
+    - answer:  "Yes"
+      summary: "Yes."
+      score:
+        score-2:
+          value: 1
+      goto:    "3"
+      color:   "is-info"
+    - answer:  "No"
+      summary: "No."
+      color:   "is-warning"
+      goto:    "3"
+
+  - node:     "3"
+    progress: "[3 10]"  # progress bar
+    text:     "Is the codebase used in multiple contexts, or are you pursuing it to be?"
+    help:     ""
+    choices:
+    - answer:  "Yes"
+      summary: "Yes."
+      goto:    "4"
+      color:   "is-info"
+    - answer:  "No"
+      summary: "No."
+      color:   "is-warning"
+      goto:    "4"
+  - node:     "4"
+    progress: "[4 10]"  # progress bar
+    text:     "Are contributions from more than one organization encouraged?"
+    help:     "Is this publishing code for transparancy or to enable collaboration?"
+    choices:
+    - answer:  "Yes"
+      summary: "Yes."
+      goto:    "5"
+      color:   "is-info"
+    - answer:  "No"
+      summary: "No."
+      color:   "is-warning"
+      goto:    "5"
+  - node:     "5"
+    progress: "[5 10]"  # progress bar
+    text:     "Is it easy for a total stranger to initiate a contribution?"
+    help:     "If someone outside your organization wanted to contribut, could they?."
+    choices:
+    - answer:  "Yes"
+      summary: "Yes."
+      goto:    "6"
+      color:   "is-info"
+    - answer:  "No"
+      summary: "No."
+      color:   "is-warning"
+      goto:    "6"
+  - node:     "6"
+    progress: "[6 10]"  # progress bar
+    text:     "Is the source code in a publicly accessible version control system (such as GitLab or GitHub)?"
+    help:     ""
+    choices:
+    - answer:  "Yes"
+      summary: "Yes."
+      goto:    "7"
+      color:   "is-info"
+    - answer:  "No"
+      summary: "No."
+      color:   "is-warning"
+      goto:    "7"
+  - node:     "7"
+    progress: "[7 10]"  # progress bar
+    text:     "Is review of contributions required?"
+    help:     ""
+    choices:
+    - answer:  "Yes"
+      summary: "Yes."
+      goto:    "8"
+      color:   "is-info"
+    - answer:  "No"
+      summary: "No."
+      color:   "is-warning"
+      goto:    "8"                
+  - node:     "8"
+    progress: "[8 10]"  # progress bar
+    text:     "Are codebase and community objectives documented?"
+    help:     ""
+    choices:
+    - answer:  "Yes"
+      summary: "Yes."
+      goto:    "9"
+      color:   "is-info"
+    - answer:  "No"
+      summary: "No."
+      color:   "is-warning"
+      goto:    "9"
+  - node:     "9"
+    progress: "[9 10]"  # progress bar
+    text:     "Are you striving to use English as the primary language in the codebase?"
+    help:     ""
+    choices:
+    - answer:  "Yes"
+      summary: "Yes."
+      goto:    "10"
+      color:   "is-info"
+    - answer:  "No"
+      summary: "No."
+      color:   "is-warning"
+      goto:    "10"
+  - node:     "10"
+    progress: "[10 10]"  # progress bar
+    text:     "Does it have an open license?"
+    help:     "Licenses that are [approved by OSI or FSF](https://spdx.org/licenses/) are open enough."
+    choices:
+    - answer:  "Yes"
+      summary: "Yes."
+      goto:    "end"
+      color:   "is-info"
+    - answer:  "No"
+      summary: "No."
+      color:   "is-warning"
+      goto:    "end"                
+  - node: "end"
+    text: "This is the end."
     done: true
+
