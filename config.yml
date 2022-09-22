@@ -1,0 +1,13 @@
+locale: "en"
+
+header:
+ title: "Is your codebase eligible for a Standard for Public Code assessment?"
+
+conditional-navigation: false
+
+tree:
+  - node:       "0"
+    text:       "node 0"
+    home-page:  true
+    no-summary: true
+    done: true
