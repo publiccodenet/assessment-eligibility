@@ -12,17 +12,14 @@ choices/project.clj:
 	git submodule update --init --recursive
 	@echo SUCCESS $@
 
-choices/config.yml: choices/project.clj config.yml
-	cp -v config.yml choices/config.yml
-	@echo SUCCESS $@
-
 .PHONY: choices-test
 choices-test: choices/project.clj
 	cd choices && lein test
 	@echo SUCCESS $@
 
 .PHONY: choices-build
-choices-build: choices/project.clj choices/config.yml
+choices-build: choices/project.clj config.yml
+	cp -v config.yml choices/config.yml
 	cd choices && lein fig:min
 	@echo SUCCESS $@
 
