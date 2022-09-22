@@ -10,29 +10,33 @@ default: all
 
 choices/project.clj:
 	git submodule update --init --recursive
+	ls -l choices/project.clj
+	@echo SUCCESS $@
+
+choices/resources/public/js/choices.js: choices/project.clj config.yml
+	cp -v config.yml choices/config.yml
+	cd choices && lein fig:min
+	ls -l choices/resources/public/js/choices.js
+	@echo SUCCESS $@
+
+choices/resources/public/index.html: choices/resources/public/js/choices.js
+	ls -l choices/resources/public/index.html
+	touch choices/resources/public/index.html
+	@echo SUCCESS $@
+
+.PHONY: all
+all: choices/resources/public/index.html
+	@echo SUCCESS $@
+
+.PHONY: view
+view: choices/resources/public/index.html
+	$(BROWSER) choices/resources/public/index.html &
 	@echo SUCCESS $@
 
 .PHONY: choices-test
 choices-test: choices/project.clj
 	cd choices && lein test
 	@echo SUCCESS $@
-
-.PHONY: choices-build
-choices-build: choices/project.clj config.yml
-	cp -v config.yml choices/config.yml
-	cd choices && lein fig:min
-	@echo SUCCESS $@
-
-choices/resources/public/index.html: choices-build
-	@echo SUCCESS $@
-
-.PHONY: all
-all: config.yml choices/resources/public/index.html
-	@echo SUCCESS $@
-
-.PHONY: view
-view: choices/resources/public/index.html
-	$(BROWSER) choices/resources/public/index.html
 
 .PHONY: check
 check: choices-test
