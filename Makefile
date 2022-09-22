@@ -3,6 +3,11 @@
 # ensure `lein` is installled
 # sudo apt install leiningen
 
+# https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
+# $@ : target label
+# $< : the first prerequisite after the colon
+# $^ : all of the prerequisite files
+
 SHELL := bash
 BROWSER ?= firefox
 
@@ -10,18 +15,18 @@ default: all
 
 choices/project.clj:
 	git submodule update --init --recursive
-	ls -l choices/project.clj
+	ls -l $@
 	@echo SUCCESS $@
 
 choices/resources/public/js/choices.js: choices/project.clj config.yml
 	cp -v config.yml choices/config.yml
 	cd choices && lein fig:min
-	ls -l choices/resources/public/js/choices.js
+	ls -l $@
 	@echo SUCCESS $@
 
 choices/resources/public/index.html: choices/resources/public/js/choices.js
-	ls -l choices/resources/public/index.html
-	touch choices/resources/public/index.html
+	ls -l $@
+	touch $@
 	@echo SUCCESS $@
 
 .PHONY: all
@@ -30,7 +35,7 @@ all: choices/resources/public/index.html
 
 .PHONY: view
 view: choices/resources/public/index.html
-	$(BROWSER) choices/resources/public/index.html &
+	$(BROWSER) $<
 	@echo SUCCESS $@
 
 .PHONY: choices-test
