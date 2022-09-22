@@ -1,0 +1,3 @@
+[submodule "choices"]
+	path = choices
+	url = https://git.sr.ht/~bzg/choices
