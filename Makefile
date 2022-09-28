@@ -11,6 +11,7 @@
 SHELL := bash
 BROWSER ?= firefox
 
+.PHONY: default
 default: all
 
 choices/project.clj:
@@ -51,5 +52,4 @@ check: choices-test
 clean:
 	git clean -dffx
 	git submodule foreach --recursive git clean -dffx
-	git submodule foreach --recursive git reset --hard
 	@echo SUCCESS $@
