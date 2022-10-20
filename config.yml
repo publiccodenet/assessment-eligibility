@@ -297,6 +297,6 @@ This self-assessment will let you know how ready your codebase are for a full as
       color:   "is-warning"
       goto:    "end"
   - node: "end"
-    text: "This is the end."
+    text: "Result"
     done: true
 
