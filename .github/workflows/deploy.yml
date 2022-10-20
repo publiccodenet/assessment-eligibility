@@ -1,7 +1,7 @@
 name: Deploy
-branches: main
 on:
-  - push
+  push:
+    branches: main
 
 defaults:
   run:
