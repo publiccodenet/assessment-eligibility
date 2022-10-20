@@ -19,7 +19,9 @@ On debian-like systems, `lein` and `make` can be installed with `apt`:
 sudo apt install leiningen make
 ```
 
-To make changes, edit the `config.yml` and build and view the site locally using `make view`.
+To make changes, edit the `config.yml` file.
+
+To build and view the site locally, run `make view`.
 
 ## Deploying
 
