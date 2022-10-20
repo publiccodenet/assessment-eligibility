@@ -165,7 +165,7 @@ This self-assessment will let you know how ready your codebase are for a full as
   - node:     "4"
     progress: "[4 10]"  # progress bar
     text:     "Are contributions from more than one organization encouraged?"
-    help:     "Is this publishing code for transparancy or to enable collaboration?"
+    help:     "Is this publishing code for transparency or to enable collaboration?"
     choices:
     - answer:  "Yes"
       summary: "Yes."
@@ -178,7 +178,7 @@ This self-assessment will let you know how ready your codebase are for a full as
   - node:     "5"
     progress: "[5 10]"  # progress bar
     text:     "Is it easy for a total stranger to initiate a contribution?"
-    help:     "If someone outside your organization wanted to contribut, could they?."
+    help:     "If someone outside your organization wanted to contribute, could they?"
     choices:
     - answer:  "Yes"
       summary: "Yes."
@@ -213,7 +213,7 @@ This self-assessment will let you know how ready your codebase are for a full as
     - answer:  "No"
       summary: "No."
       color:   "is-warning"
-      goto:    "8"                
+      goto:    "8"
   - node:     "8"
     progress: "[8 10]"  # progress bar
     text:     "Are codebase and community objectives documented?"
@@ -252,7 +252,7 @@ This self-assessment will let you know how ready your codebase are for a full as
     - answer:  "No"
       summary: "No."
       color:   "is-warning"
-      goto:    "end"                
+      goto:    "end"
   - node: "end"
     text: "This is the end."
     done: true
