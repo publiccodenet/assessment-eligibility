@@ -1,0 +1,16 @@
+name: Deploy
+branches: main
+on:
+  - push
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  cibuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: apt install -y leiningen make
+      - run: make
