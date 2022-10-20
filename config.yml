@@ -23,7 +23,7 @@ header:
 
 # Website footer
 footer:
- text:    "Made with [Choices](https://git.sr.ht/~bzg/choices) by Etalab/DINUM"
+ text:    "Made with [Choices](https://git.sr.ht/~bzg/choices) by [bzg](https://sr.ht/~bzg/)"
  contact:  ""
 
 # Allow users to send you emails with the summary?
