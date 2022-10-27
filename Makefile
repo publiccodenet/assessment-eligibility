@@ -48,6 +48,11 @@ choices-test: choices/project.clj
 check: choices-test
 	@echo SUCCESS $@
 
+.PHONY: update-submodules
+update-submodules:
+	git submodule update --init --recursive
+	@echo SUCCESS $@
+
 .PHONY: clean
 clean:
 	git clean -dffx
