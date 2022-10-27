@@ -10,8 +10,8 @@ We welcome contributions, please create [issues](https://github.com/publiccodene
 
 ## Building and testing
 
-This tool is built upon [Choices](https://git.sr.ht/~bzg/choices) by Etalab/DINUM.
-Choices is clojure project, and can be built with `lein`.
+This tool is built upon [Choices](https://git.sr.ht/~bzg/choices) by [Bastien Guerry](https://sr.ht/~bzg/).
+Choices is a ClojureScript project, and can be built with `lein`.
 The build process uses `make`.
 On debian-like systems, `lein` and `make` can be installed with `apt`:
 
