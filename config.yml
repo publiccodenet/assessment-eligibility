@@ -177,7 +177,7 @@ This self-assessment will let you know how ready your codebase are for a full as
       goto:    "5"
   - node:     "5"
     progress: "[5 10]"  # progress bar
-    text:     "Is it easy for a total stranger to initiate a contribution?"
+    text:     "Is it easy for someone outside your organization to initiate a contribution?"
     help:     "If someone outside your organization wanted to contribute, could they?"
     choices:
     - answer:  "Yes"
