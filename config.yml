@@ -19,7 +19,7 @@ header:
  title:    "Standard for a Public Code self-assessment"
  logo:     ""
  color:    "is-primary"
- subtitle: "Check if your codebase is ready for a full assessment?"
+ subtitle: "Check if your codebase is ready for a full assessment."
 
 # Website footer
 footer:
@@ -60,7 +60,7 @@ display-unconditionnally: ""
 # (3) "as-top-result-display": what to display when the variable is
 #      the one with the highest score when the user is done.
 score-variables:
-  score-1:
+  score-standard:
     display: "Alignment with the Standard for Public Code"
     value: 0
     as-percent: true
@@ -81,19 +81,38 @@ conditional-score-outputs:
     # Final score message supports using formatting strings for
     # scores.  Strings starting with "%" and matching a score name
     # will be interpolated: e.g. here the message will display the
-    # value of "score-1".
-    message: "1 wins! :)  Here is the score 1: %score-1"
+    # value of "score-standard".
+    message: "Perfect score! :)  You are absolutely ready to start the full assessment."
     condition-1: #free-form
-      # cas-1 is the case when score-& >= 1
-      score-1: 1
+      # cas-1 is the case when score-standards >= 10
+      score-standard: 10
   cas-2: # free-form
-    notification: "is-danger"
-    message: "2 wins! :(  Here is the score 2: %score-2"
+    notification: "is-success"
+    priority: 2
+    message: "Close enough to start assessment! You have a few things to work on, but we can start an assessment."
     # When max is set as below, %score-2 above will be formatted as a
     # percentage: if score 2 is 10 and max is 10, the percent is 100.
-    condition-1: #free-form
-      # cas-2 is the case when score-2 >= 9
-      score-2: 9
+    condition-2: #free-form
+      # cas-2 is the case when score-standard >= 8
+      score-standard: 8
+  cas-3: # free-form
+    notification: "is-warning"
+    priority: 3
+    message: "Almost there! You have a few things to work on, but you should soon be ready to start an assessment."
+    # When max is set as below, %score-2 above will be formatted as a
+    # percentage: if score 2 is 10 and max is 10, the percent is 100.
+    condition-3: #free-form
+      # cas-2 is the case when score-standard >= 6
+      score-standard: 6
+  cas-4: # free-form
+    notification: "is-danger"
+    priority: 4
+    message: "It looks like there is some work to do before you are ready for an assessment."
+    # When max is set as below, %score-2 above will be formatted as a
+    # percentage: if score 2 is 10 and max is 10, the percent is 100.
+    condition-4: #free-form
+      # cas-2 is the case when score-standard >= 0
+      score-standard: 0
 
 # Mandatory configuration option
 tree:
@@ -122,7 +141,7 @@ This self-assessment will let you know how ready your codebase are for a full as
       summary: "Yes, the codebase is developed in the open."
       explain: "Anyone can access the source code and see the backlog, roadmap, etc."
       score:
-        score-1:
+        score-standard:
           value: 1
       goto:    "2"
       color:   "is-info"
@@ -138,14 +157,14 @@ This self-assessment will let you know how ready your codebase are for a full as
     help:     "With policy, we mean laws, regulations, decisions made by a public body or similar."
     choices:
     - answer:  "Yes"
-      summary: "Yes."
+      summary: "Yes, the codebase implements a public policy."
       score:
-        score-2:
+        score-standard:
           value: 1
       goto:    "3"
       color:   "is-info"
     - answer:  "No"
-      summary: "No."
+      summary: "No, the codebase does not implement a public policy."
       color:   "is-warning"
       goto:    "3"
 
@@ -155,11 +174,14 @@ This self-assessment will let you know how ready your codebase are for a full as
     help:     ""
     choices:
     - answer:  "Yes"
-      summary: "Yes."
+      summary: "Yes the codebase is meant to be used for multiple contexts."
+      score:
+        score-standard:
+          value: 1
       goto:    "4"
       color:   "is-info"
     - answer:  "No"
-      summary: "No."
+      summary: "No, the codebase is not meant for multiple contexts."
       color:   "is-warning"
       goto:    "4"
   - node:     "4"
@@ -168,11 +190,14 @@ This self-assessment will let you know how ready your codebase are for a full as
     help:     "Is this publishing code for transparency or to enable collaboration?"
     choices:
     - answer:  "Yes"
-      summary: "Yes."
+      summary: "Yes, we welcome contributions."
+      score:
+        score-standard:
+          value: 1
       goto:    "5"
       color:   "is-info"
     - answer:  "No"
-      summary: "No."
+      summary: "No, other organizations cannot contribute to the codebase."
       color:   "is-warning"
       goto:    "5"
   - node:     "5"
@@ -181,11 +206,14 @@ This self-assessment will let you know how ready your codebase are for a full as
     help:     "If someone outside your organization wanted to contribute, could they?"
     choices:
     - answer:  "Yes"
-      summary: "Yes."
+      summary: "Yes, anyone can contribute."
+      score:
+        score-standard:
+          value: 1
       goto:    "6"
       color:   "is-info"
     - answer:  "No"
-      summary: "No."
+      summary: "No, not anyone could contribute."
       color:   "is-warning"
       goto:    "6"
   - node:     "6"
@@ -194,11 +222,14 @@ This self-assessment will let you know how ready your codebase are for a full as
     help:     ""
     choices:
     - answer:  "Yes"
-      summary: "Yes."
+      summary: "Yes, the surce code is in a publicly accessible version control system."
+      score:
+        score-standard:
+          value: 1
       goto:    "7"
       color:   "is-info"
     - answer:  "No"
-      summary: "No."
+      summary: "No, the source code is not in a publicly accessible version control system."
       color:   "is-warning"
       goto:    "7"
   - node:     "7"
@@ -207,11 +238,14 @@ This self-assessment will let you know how ready your codebase are for a full as
     help:     ""
     choices:
     - answer:  "Yes"
-      summary: "Yes."
+      summary: "Yes, all contributions are reviewed."
+      score:
+        score-standard:
+          value: 1
       goto:    "8"
       color:   "is-info"
     - answer:  "No"
-      summary: "No."
+      summary: "No, contributions are not reviewed."
       color:   "is-warning"
       goto:    "8"
   - node:     "8"
@@ -220,11 +254,14 @@ This self-assessment will let you know how ready your codebase are for a full as
     help:     ""
     choices:
     - answer:  "Yes"
-      summary: "Yes."
+      summary: "Yes, codebase and community objectives are documented."
+      score:
+        score-standard:
+          value: 1
       goto:    "9"
       color:   "is-info"
     - answer:  "No"
-      summary: "No."
+      summary: "No, codebase and community objectives are not documented."
       color:   "is-warning"
       goto:    "9"
   - node:     "9"
@@ -233,11 +270,14 @@ This self-assessment will let you know how ready your codebase are for a full as
     help:     ""
     choices:
     - answer:  "Yes"
-      summary: "Yes."
+      summary: "Yes, we strive to use English as the primary language."
+      score:
+        score-standard:
+          value: 1
       goto:    "10"
       color:   "is-info"
     - answer:  "No"
-      summary: "No."
+      summary: "No we do not strive to use English as the primary language."
       color:   "is-warning"
       goto:    "10"
   - node:     "10"
@@ -246,11 +286,14 @@ This self-assessment will let you know how ready your codebase are for a full as
     help:     "Licenses that are [approved by OSI or FSF](https://spdx.org/licenses/) are open enough."
     choices:
     - answer:  "Yes"
-      summary: "Yes."
+      summary: "Yes, the codebase has an open license."
+      score:
+        score-standard:
+          value: 1
       goto:    "end"
       color:   "is-info"
     - answer:  "No"
-      summary: "No."
+      summary: "No, the codebase does not have an open license."
       color:   "is-warning"
       goto:    "end"
   - node: "end"
