@@ -146,7 +146,7 @@ This self-assessment will let you know how ready your codebase are for a full as
       goto:    "2"
       color:   "is-info"
     - answer:  "No"
-      summary: "No, the codebase is not open."
+      summary: "No, the codebase is not developed in the open."
       color:   "is-warning"
       explain: "Some parts of the process is kept private."
       goto:    "3"
@@ -174,14 +174,14 @@ This self-assessment will let you know how ready your codebase are for a full as
     help:     ""
     choices:
     - answer:  "Yes"
-      summary: "Yes the codebase is meant to be used for multiple contexts."
+      summary: "Yes, the codebase is meant to be used for multiple contexts."
       score:
         score-standard:
           value: 1
       goto:    "4"
       color:   "is-info"
     - answer:  "No"
-      summary: "No, the codebase is not meant for multiple contexts."
+      summary: "No, the codebase is not used in multiple contexts now and we are not actively pursuing it."
       color:   "is-warning"
       goto:    "4"
   - node:     "4"
@@ -197,7 +197,7 @@ This self-assessment will let you know how ready your codebase are for a full as
       goto:    "5"
       color:   "is-info"
     - answer:  "No"
-      summary: "No, other organizations cannot contribute to the codebase."
+      summary: "No, other organizations are not encouraged to contribute to the codebase."
       color:   "is-warning"
       goto:    "5"
   - node:     "5"
@@ -213,7 +213,7 @@ This self-assessment will let you know how ready your codebase are for a full as
       goto:    "6"
       color:   "is-info"
     - answer:  "No"
-      summary: "No, not anyone could contribute."
+      summary: "No, it is not easy for anyone to contribute."
       color:   "is-warning"
       goto:    "6"
   - node:     "6"
@@ -238,14 +238,14 @@ This self-assessment will let you know how ready your codebase are for a full as
     help:     ""
     choices:
     - answer:  "Yes"
-      summary: "Yes, all contributions are reviewed."
+      summary: "Yes, review of contributions is required."
       score:
         score-standard:
           value: 1
       goto:    "8"
       color:   "is-info"
     - answer:  "No"
-      summary: "No, contributions are not reviewed."
+      summary: "No, review of contributions is not required."
       color:   "is-warning"
       goto:    "8"
   - node:     "8"
