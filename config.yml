@@ -82,14 +82,14 @@ conditional-score-outputs:
     # scores.  Strings starting with "%" and matching a score name
     # will be interpolated: e.g. here the message will display the
     # value of "score-standard".
-    message: "Perfect score! :)  You are absolutely ready to start the full assessment."
+    message: "Perfect score! :)  You are absolutely ready to start a full assessment. Contact the Foundation for Public Code at <a href='mailto:info@publiccode.net'>info@publiccode.net</a>."
     condition-1: #free-form
       # cas-1 is the case when score-standards >= 10
       score-standard: 10
   cas-2: # free-form
     notification: "is-success"
     priority: 2
-    message: "Close enough to start assessment! You have a few things to work on, but we can start an assessment."
+    message: "Close enough to start assessment! You have a few things to work on, but we can start an assessment. Contact the Foundation for Public Code at <a href='mailto:info@publiccode.net'>info@publiccode.net</a>."
     # When max is set as below, %score-2 above will be formatted as a
     # percentage: if score 2 is 10 and max is 10, the percent is 100.
     condition-2: #free-form
@@ -98,7 +98,7 @@ conditional-score-outputs:
   cas-3: # free-form
     notification: "is-warning"
     priority: 3
-    message: "Almost there! You have a few things to work on, but you should soon be ready to start an assessment."
+    message: "Almost there! You have a few things to work on, but you should soon be ready to start an assessment. Contact the Foundation for Public Code at <a href='mailto:info@publiccode.net'>info@publiccode.net</a> if you have questions."
     # When max is set as below, %score-2 above will be formatted as a
     # percentage: if score 2 is 10 and max is 10, the percent is 100.
     condition-3: #free-form
@@ -107,7 +107,7 @@ conditional-score-outputs:
   cas-4: # free-form
     notification: "is-danger"
     priority: 4
-    message: "It looks like there is some work to do before you are ready for an assessment."
+    message: "It looks like there is some work to do before you are ready for an assessment. Contact the Foundation for Public Code at <a href='mailto:info@publiccode.net'>info@publiccode.net</a> if you have questions."
     # When max is set as below, %score-2 above will be formatted as a
     # percentage: if score 2 is 10 and max is 10, the percent is 100.
     condition-4: #free-form
