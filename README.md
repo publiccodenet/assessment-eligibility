@@ -4,6 +4,8 @@
 
 Check if your codebase is ready for a full assessment by the [Foundation for Public Code](https://publiccode.net) towards the [Standard for Public Code](https://standard.publiccode.net/).
 
+[![Deploy](https://github.com/publiccodenet/assessment-eligibility/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/publiccodenet/assessment-eligibility/actions/workflows/deploy.yml)
+
 ## Contribute
 
 We welcome contributions, please create [issues](https://github.com/publiccodenet/assessment-eligibility/issues) and [pull requests](https://github.com/publiccodenet/assessment-eligibility/pulls).
