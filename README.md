@@ -13,12 +13,15 @@ We welcome contributions, please create [issues](https://github.com/publiccodene
 ## Building and testing
 
 This tool is built upon [Choices](https://git.sr.ht/~bzg/choices) by [Bastien Guerry](https://sr.ht/~bzg/).
-Choices is a ClojureScript project, and can be built with `lein`.
+Choices is a ClojureScript project, and uses `clj`.
 The build process uses `make`.
 On debian-like systems, `lein` and `make` can be installed with `apt`:
 
 ```
-sudo apt install leiningen make
+sudo apt install make
+curl -L -O https://github.com/clojure/brew-install/releases/latest/download/posix-install.sh
+chmod +x posix-install.sh
+sudo ./posix-install.sh
 ```
 
 To make changes, edit the `config.yml` file.
