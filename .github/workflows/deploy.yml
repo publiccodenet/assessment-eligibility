@@ -30,8 +30,14 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: install-deps
-        run: sudo apt install -y leiningen make
+      - name: install-system-deps
+        run: sudo apt install -y curl make rlwrap clojure
+      - name: download-newer-clojure
+        run: curl -L -O https://github.com/clojure/brew-install/releases/latest/download/posix-install.sh
+      - name: chmod-posix-install
+        run: chmod +x posix-install.sh
+      - name: install-newer-clojure
+        run: sudo ./posix-install.sh
       - name: make
         run: make
       - name: upload

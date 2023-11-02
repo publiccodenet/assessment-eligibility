@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
-# ensure `lein` is installled
-# sudo apt install leiningen
+# ensure clj is installed
+# https://clojure.org/guides/install_clojure#posix
 
 # https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 # $@ : target label
@@ -10,18 +10,21 @@
 
 SHELL := bash
 BROWSER ?= firefox
+CLJ ?= clj
 
 .PHONY: default
 default: all
 
-choices/project.clj:
+choices/LICENSE:
 	git submodule update --init --recursive
 	ls -l $@
 	@echo SUCCESS $@
 
-choices/resources/public/js/choices.js: choices/project.clj config.yml
+choices/config.yml: choices/LICENSE config.yml
 	cp -v config.yml choices/config.yml
-	cd choices && lein fig:min
+
+choices/resources/public/js/choices.js: choices/LICENSE choices/config.yml
+	cd choices && $(CLJ) -M:js
 	ls -l $@
 	@echo SUCCESS $@
 
@@ -40,8 +43,8 @@ view: choices/resources/public/index.html
 	@echo SUCCESS $@
 
 .PHONY: choices-test
-choices-test: choices/project.clj
-	cd choices && lein test
+choices-test: choices/LICENSE choices/config.yml
+	cd choices && $(CLJ) -M:test
 	@echo SUCCESS $@
 
 .PHONY: check
