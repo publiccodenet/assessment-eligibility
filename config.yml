@@ -45,7 +45,7 @@ display-score-details: true
 display-score-top-result: true
 
 # In a branch of the tree, should the target node be set depending on
-# the updated value of conditional-score-outputs?
+# the updated value of conditional-score-output?
 conditional-navigation: false
 
 # Some text message to always display after the score results
@@ -74,7 +74,7 @@ score-variables:
 # (2) message (mandatory): message to display when one of the condition is met
 # (3) anything else is a "condition", which lists variables and their minimal
 # values for the condition to be met.
-conditional-score-outputs:
+conditional-score-output:
   cas-1: # free-form
     notification: "is-success"
     priority: 1
